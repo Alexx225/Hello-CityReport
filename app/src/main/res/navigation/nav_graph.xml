@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bienvenidaFragment">
+
+    <!-- Pantalla 1: Bienvenida -->
+    <fragment
+        android:id="@+id/bienvenidaFragment"
+        android:name="com.example.cityreport.BienvenidaFragment"
+        android:label="Bienvenida"
+        tools:layout="@layout/fragment_bienvenida">
+
+        <!-- Acción de navegación hacia la lista -->
+        <action
+            android:id="@+id/action_bienvenidaFragment_to_listaIncidenciasFragment"
+            app:destination="@id/listaIncidenciasFragment" />
+    </fragment>
+
+    <!-- Pantalla 2: Lista de Incidencias -->
+    <fragment
+        android:id="@+id/listaIncidenciasFragment"
+        android:name="com.example.cityreport.ListaIncidenciasFragment"
+        android:label="Lista de Incidencias"
+        tools:layout="@layout/fragment_lista_incidencias" />
+
+</navigation>
