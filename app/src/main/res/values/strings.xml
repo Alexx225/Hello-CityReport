@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CityReport</string>
+    <string name="Bienvenido_a_cityreport">¡Bienvenido a CityReport!</string>
+    <string name="empezar">Empezar</string>
+</resources>
