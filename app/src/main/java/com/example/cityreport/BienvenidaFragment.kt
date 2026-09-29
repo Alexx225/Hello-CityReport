@@ -24,9 +24,9 @@ class BienvenidaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Evento del botón: Navega hacia la pantalla con la lista de incidencias
+        // Navega al menú principal (Home) al presionar el botón
         binding.btnEmpezar.setOnClickListener {
-            findNavController().navigate(R.id.action_bienvenidaFragment_to_listaIncidenciasFragment)
+            findNavController().navigate(R.id.action_bienvenidaFragment_to_homeFragment)
         }
     }
 

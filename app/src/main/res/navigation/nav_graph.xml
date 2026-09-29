@@ -5,24 +5,60 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/bienvenidaFragment">
 
-    <!-- Pantalla 1: Bienvenida -->
+    <!-- Pantalla de Bienvenida -->
     <fragment
         android:id="@+id/bienvenidaFragment"
         android:name="com.example.cityreport.BienvenidaFragment"
         android:label="Bienvenida"
         tools:layout="@layout/fragment_bienvenida">
-
-        <!-- Acción de navegación hacia la lista -->
+        <action
+            android:id="@+id/action_bienvenidaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_bienvenidaFragment_to_listaIncidenciasFragment"
             app:destination="@id/listaIncidenciasFragment" />
     </fragment>
 
-    <!-- Pantalla 2: Lista de Incidencias -->
+    <!-- Home / Menú Principal -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.cityreport.HomeFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_listaIncidenciasFragment"
+            app:destination="@id/listaIncidenciasFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_crearIncidenciaFragment"
+            app:destination="@id/crearIncidenciaFragment" />
+    </fragment>
+
+    <!-- Lista de Incidencias -->
     <fragment
         android:id="@+id/listaIncidenciasFragment"
         android:name="com.example.cityreport.ListaIncidenciasFragment"
         android:label="Lista de Incidencias"
-        tools:layout="@layout/fragment_lista_incidencias" />
+        tools:layout="@layout/fragment_lista_incidencias">
+        <action
+            android:id="@+id/action_listaIncidenciasFragment_to_detalleIncidenciaFragment"
+            app:destination="@id/detalleIncidenciaFragment" />
+        <action
+            android:id="@+id/action_listaIncidenciasFragment_to_crearIncidenciaFragment"
+            app:destination="@id/crearIncidenciaFragment" />
+    </fragment>
+
+    <!-- Crear Incidencia -->
+    <fragment
+        android:id="@+id/crearIncidenciaFragment"
+        android:name="com.example.cityreport.CrearIncidenciaFragment"
+        android:label="Nuevo Reporte"
+        tools:layout="@layout/fragment_crear_incidencia" />
+
+    <!-- Detalle de Incidencia -->
+    <fragment
+        android:id="@+id/detalleIncidenciaFragment"
+        android:name="com.example.cityreport.DetalleIncidenciaFragment"
+        android:label="Detalle del Reporte"
+        tools:layout="@layout/fragment_detalle_incidencia" />
 
 </navigation>

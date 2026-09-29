@@ -5,39 +5,48 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cityreport.databinding.FragmentListaIncidenciasBinding
-import com.example.cityreport.model.Incidencia
+import com.example.cityreport.viewmodel.IncidenciaViewModel
 
 class ListaIncidenciasFragment : Fragment() {
 
-    // Manejo seguro del View Binding dentro del ciclo de vida del Fragment
     private var _binding: FragmentListaIncidenciasBinding? = null
-    val binding get() = _binding!!
+    private val binding get() = _binding!!
+
+    private val viewModel: IncidenciaViewModel by activityViewModels()
+    private lateinit var adapter: IncidenciaAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListaIncidenciasBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null // Previene fugas de memoria (memory leaks)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listaMock = listOf(
-            Incidencia(1, "Bache en Av. Principal", "Bache profundo causa tráfico.", "Av. Central #102", "Pendiente"),
-            Incidencia(2, "Fuga de Agua", "Tubería rota en banqueta.", "Calle Hidalgo #45", "En proceso"),
-            Incidencia(3, "Luminaria Fundida", "Falta de alumbrado público.", "Parque Lineal", "Resuelto")
-        )
+        // Configuración del Adapter con callback de navegación al detalle
+        adapter = IncidenciaAdapter(emptyList()) { incidencia ->
+            viewModel.incidenciaSeleccionada = incidencia
+            findNavController().navigate(R.id.action_listaIncidenciasFragment_to_detalleIncidenciaFragment)
+        }
 
-        binding.rvIncidencias.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
-        binding.rvIncidencias.adapter = IncidenciaAdapter(listaMock)
+        binding.rvIncidencias.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvIncidencias.adapter = adapter
+
+        // Observar la lista del ViewModel en tiempo real
+        viewModel.incidencias.observe(viewLifecycleOwner) { listaActualizada ->
+            adapter.actualizarLista(listaActualizada)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

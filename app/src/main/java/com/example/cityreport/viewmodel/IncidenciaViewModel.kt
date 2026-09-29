@@ -23,4 +23,6 @@ class IncidenciaViewModel : ViewModel() {
         listaActual.add(incidencia)
         _incidencias.value = listaActual
     }
+
+    var incidenciaSeleccionada: Incidencia? = null
 }
