@@ -1,17 +1,75 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="24dp">
 
     <TextView
+        android:id="@+id/tvTituloHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Fragment - Base"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/titulo_home"
+        android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Tarjeta de Resumen -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardResumen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloHome">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado del Sistema"
+                android:textSize="14sp"
+                android:textColor="#666666" />
+
+            <TextView
+                android:id="@+id/tvTotalIncidencias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Cargando reportes..."
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Botón 1: Ver Lista -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVerReportes"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/btn_ver_reportes"
+        app:cornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/cardResumen" />
+
+    <!-- Botón 2: Crear Reporte -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCrearReporte"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_crear_reporte"
+        app:cornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnVerReportes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
